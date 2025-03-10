@@ -1,0 +1,41 @@
+<template>
+
+    <div class="main">
+        <div class="filters slds-grid">
+            <div class="slds-col slds-p-around_large">
+                <lightning-input label="Maximum Price" onchange={handlePriceChange} type="number"></lightning-input>
+            </div>
+            <div class="slds-col slds-p-around_large">
+                <lightning-combobox
+                    label="Availability Status"
+                    options={Availability_Status_Options}
+                    onchange={handleStatusChange} >
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-p-around_large">
+                <lightning-combobox
+                    label="Furnishing Status"
+                    options={Furnishing_Status_Options}
+                    onchange={handleFurnishingStatusChange} >
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-p-around_large">
+                <lightning-input
+                    type="number"
+                    label="Near By Distance (KM)"
+                    onchange={handleDistanceChange} >
+                </lightning-input>
+            </div>
+        </div>
+
+        <div class="filter_btn slds-p-around_large">
+            <lightning-button variant="destructive"  label="Filter" onclick={handleFilter}></lightning-button>
+        </div>
+
+        <div class="properties">
+            <template for:each={properties} for:item="property">
+                <c-property-card property-info={property} key={property.Id}></c-property-card>
+            </template>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,124 @@
+<template>
+    <lightning-card>
+        <div class="card_head slds-grid slds-grid_align-center">
+            <h1 style="font-size: 25px;font-weight:bolder;">New Property</h1>
+        </div>
+        <p class="error_message">{errorMessage}</p>
+
+        <div class="section">
+            <h1 style="font-size: 20px;font-weight:bolder;margin-left:20px">Basic Information</h1>
+        </div>
+        <div class="property_form slds-grid slds-wrap slds-p-around_xx-large">
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-input label="Property Name" value={formData.propertyname} onchange={handlePropertyChange}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-input label="rent" type="number" value={formData.rent} onchange={handleRentChange}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-combobox
+                    label="Furnishing Status"
+                    name="FurnishingStatus"
+                    options={FURNISHING_STATUS_OPTIONS}
+                    value={formData.FurnishingStatus}
+                    onchange={handleFurnishingStatusChange} >
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-combobox
+                    label="Type"
+                    name="Type"
+                    options={TYPE_OPTIONS}
+                    value={formData.Type}
+                    onchange={handleTypeChange} >
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-combobox
+                    label="Status"
+                    name="Status"
+                    options={STATUS_OPTIONS}
+                    value={formData.Status}
+                    onchange={handleStatusChange} >
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-input label="Description" value={formData.Description} onchange={handleDescriptionChange}></lightning-input>
+            </div>
+        </div>
+
+        <div class="section">
+            <h1 style="font-size: 20px;font-weight:bolder;margin-left:20px">Address</h1>
+        </div>
+        <div class="property_form slds-grid slds-wrap slds-p-around_xx-large">
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-combobox
+                    name="Country"
+                    label="Country"
+                    options={COUNTRY_OPTIONS}
+                    value={formData.Country}
+                    onchange={handleCountryChange} >
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-combobox
+                    label="State"
+                    name="State"
+                    options={STATE_OPTIONS}
+                    value={formData.State}
+                    onchange={handleStateChange} >
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-combobox
+                    name="City"
+                    label="City"
+                    options={CITY_OPTIONS}
+                    value={formData.City}
+                    onchange={handleCityChange} >
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-input label="Postal Code" onchange={handlePostalCodeChange}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_large">
+                <lightning-input label="Address" onchange={handleAddressChange}></lightning-input>
+            </div>
+        </div>
+
+        <div class="section">
+            <h1 style="font-size: 20px;font-weight:bolder;margin-left:20px">Property Images</h1>
+        </div>
+
+        <div class="file_upload"  style="margin-left: 50px;padding:10px">
+            <lightning-file-upload
+            name="fileUploader"
+            accept={acceptedFormats}
+            onuploadfinished={handleUploadFinished}
+            multiple
+            >
+            </lightning-file-upload>
+        </div>
+
+       
+
+
+        <div class="Images_containder slds-grid slds-wrap slds-p-around_xx-large">
+            <template for:each={uploadedfilesInfo} for:item="file">
+                <div class="col" key={file.Id}>
+                    <img src={file.URL} alt="File Thumbnail" class="thumbnail"/>
+                    <div class="image_title">{file.fileName}</div>
+                    <span data-value={file.Id} class="remove" onclick={removefiles}><lightning-icon class='red-utility-icon' icon-name='utility:close' alternative-text='remove' size='xx-small' title='remove'></lightning-icon></span>
+                </div>
+            </template>
+        </div>
+
+        <div class="createBTN">
+            <lightning-button label="Create" variant="brand" onclick={createProperty}></lightning-button>
+        </div>
+    </lightning-card>
+
+    <template if:true={isload}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+</template>

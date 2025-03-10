@@ -1,0 +1,38 @@
+.main
+{
+    padding: 60px;
+}
+
+.card
+{
+    background-color: gray;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fafafa;
+}
+
+.head
+{
+    text-align: center;
+    border-bottom: 1px solid #f0f2f2;
+    font-size: 25px;
+    padding-block: 10px;
+    font-weight: bolder;
+}
+
+.body
+{
+    display: flex;
+}
+.body .property_Info,.body .Map
+{
+    width: 50%;
+    margin: 5px;
+    height: 300px;
+}
+.body .property_Info h1
+{
+    font-size: 20px;
+    margin-block: 5px;
+    
+}

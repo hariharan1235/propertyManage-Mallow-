@@ -1,0 +1,26 @@
+<template>
+    <!-- <lightning-map map-markers={mapMarkers}
+    markers-title="Lunch Gems"
+    onmarkerselect={handleMarkerSelect}
+    selected-marker-value={selectedMarkerValue}> </lightning-map> -->
+
+    <lightning-file-upload
+    label="Attach receipt"
+    name="fileUploader"
+    accept={acceptedFormats}
+    record-id={myRecordId}
+    onuploadfinished={handleUploadFinished}
+    multiple
+>
+</lightning-file-upload>
+
+<template for:each={fileUploaded} for:item="file">
+    <div key={file}>
+        <div class="slds-box slds-box_x-small slds-text-align_center">{file}</div>
+    </div>
+</template>
+
+
+
+<!-- <img src={previewURL} alt="File Thumbnail" class="thumbnail"/> -->
+</template>

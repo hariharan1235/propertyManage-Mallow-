@@ -1,0 +1,30 @@
+<template>
+    <div class="main">
+        <div class="card">
+            <div class="head">
+                <h1>{propertyInfo.Property_Name__c}</h1>
+            </div>
+            <div class="body">
+                <div class="property_Info">
+                    <h1>Status : {propertyInfo.Status__c}</h1>
+                    <h1>Price : {propertyInfo.Rent__c}</h1>
+                    <h1>Furniture Type : {propertyInfo.Furnishing_Status__c}</h1>
+                    <template if:true={isAvailable}>
+                        <lightning-button type="brand" onclick={generatePDF} label="book"></lightning-button>
+                    </template>
+                </div>
+                <div class="Map">
+                    <lightning-map map-markers={mapMarkers}
+                                   markers-title="Lunch Gems"
+                                   onmarkerselect={handleMarkerSelect}
+                                   zoom-level="14"
+                                   style="height: 300px; width: 100%;"
+                                   selected-marker-value={selectedMarkerValue}> 
+                    </lightning-map>
+                </div>
+            </div>
+        
+            
+        </div>
+    </div>
+</template>
